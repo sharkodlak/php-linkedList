@@ -1,2 +1,2 @@
-# php-linkedList
+# phlink
 PHP linked list implementation
