@@ -7,7 +7,7 @@ namespace Sharkodlak\Phlink;
 interface LinkedList
 {
     public function getValue(): int|string;
-    public function add(int|string $nextValue): self;
+    public function append(int|string $nextValue): self;
     public function next(): ?self;
     public function last(): self;
 

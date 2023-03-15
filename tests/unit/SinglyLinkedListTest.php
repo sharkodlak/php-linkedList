@@ -15,33 +15,33 @@ class SinglyLinkedListTest extends TestCase
         $this->assertSame(7, $phlink->getValue());
     }
 
-    public function testAdd(): void
+    public function testAppend(): void
     {
         $phlink = new SinglyLinkedList(1);
-        $second = $phlink->add(2);
+        $second = $phlink->append(2);
         $this->assertSame(2, $second->getValue());
     }
 
     public function testNext(): void
     {
         $phlink = new SinglyLinkedList(1);
-        $phlink->add(2);
+        $phlink->append(2);
         $this->assertSame(2, $phlink->next()->getValue());
     }
 
     public function testToArray(): void
     {
         $phlink = new SinglyLinkedList(1);
-        $phlink->add(2);
+        $phlink->append(2);
         $this->assertSame([1, 2], $phlink->toArray());
     }
 
     public function testAddInTheMiddle(): void
     {
         $phlink = new SinglyLinkedList(1);
-        $two = $phlink->add(2);
-        $four = $two->add(4);
-        $two->add(3);
+        $two = $phlink->append(2);
+        $two->append(4);
+        $two->append(3);
 
         $this->assertSame([1, 2, 3, 4], $phlink->toArray());
     }

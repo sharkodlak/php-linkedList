@@ -18,7 +18,7 @@ class SortedSinglyLinkedList implements LinkedList
         return $this->value;
     }
 
-    public function add(int|string $nextValue): self
+    public function append(int|string $nextValue): self
     {
         $lastNode = $this->last();
         $lastNode->nextNode = new self($nextValue);

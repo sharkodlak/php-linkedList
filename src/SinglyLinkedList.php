@@ -18,7 +18,7 @@ class SinglyLinkedList implements LinkedList
         return $this->value;
     }
 
-    public function add(int|string $nextValue): self
+    public function append(int|string $nextValue): self
     {
         $newNode = new self($nextValue);
         $newNode->nextNode = $this->nextNode;
@@ -30,7 +30,7 @@ class SinglyLinkedList implements LinkedList
     {
         $lastNode = $this;
 
-        while ($lastNode->nextNode !== null) {
+        while ($lastNode->nextNode !== null && $lastNode->nextNode !== $this) {
             $lastNode = $lastNode->nextNode;
         }
 
@@ -45,13 +45,13 @@ class SinglyLinkedList implements LinkedList
     /** @return array<int,int|string> */
     public function toArray(): array
     {
-        $lastNode = $this;
         $array = [];
+        $lastNode = $this;
 
-        while ($lastNode !== null) {
+        do {
             $array[] = $lastNode->value;
             $lastNode = $lastNode->nextNode;
-        }
+        } while ($lastNode !== null && $lastNode !== $this);
 
         return $array;
     }
