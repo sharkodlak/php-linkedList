@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Sharkodlak\Phlink;
 
-class SinglyLinkedList implements LinkedList
+class SortedSinglyLinkedList implements LinkedList
 {
     private ?self $nextNode = null;
 
@@ -20,10 +20,9 @@ class SinglyLinkedList implements LinkedList
 
     public function add(int|string $nextValue): self
     {
-        $newNode = new self($nextValue);
-        $newNode->nextNode = $this->nextNode;
-        $this->nextNode = $newNode;
-        return $newNode;
+        $lastNode = $this->last();
+        $lastNode->nextNode = new self($nextValue);
+        return $lastNode->nextNode;
     }
 
     public function last(): self
@@ -48,7 +47,7 @@ class SinglyLinkedList implements LinkedList
         $lastNode = $this;
         $array = [];
 
-        while ($lastNode !== null) {
+        while ($lastNode->nextNode !== null) {
             $array[] = $lastNode->value;
             $lastNode = $lastNode->nextNode;
         }
