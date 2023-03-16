@@ -11,7 +11,7 @@ use Sharkodlak\Phlink\LinkedList;
 /** @implements \IteratorAggregate<int,LinkedList> */
 class SortedLinkedListHandler implements \IteratorAggregate
 {
-    private LinkedList $node;
+    protected LinkedList $node;
 
     public function __construct(
         private Factory $factory,
