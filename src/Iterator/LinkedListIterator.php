@@ -13,7 +13,7 @@ class LinkedListIterator implements \Iterator
     private ?LinkedList $currentNode;
 
     public function __construct(
-        private LinkedList $startNode
+        private ?LinkedList $startNode
     ) {
     }
 

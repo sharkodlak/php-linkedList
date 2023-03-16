@@ -6,6 +6,7 @@ namespace Sharkodlak\Phlink\Handler;
 
 use Sharkodlak\Phlink\Comparator\ValuesComparator;
 use Sharkodlak\Phlink\Factory\Factory;
+use Sharkodlak\Phlink\Iterator\LinkedListIterator;
 use Sharkodlak\Phlink\LinkedList;
 
 /** @implements \IteratorAggregate<int,LinkedList> */
@@ -50,6 +51,6 @@ class SortedLinkedListHandler implements \IteratorAggregate
 
     public function getIterator(): \Traversable
     {
-        return $this->node->getIterator();
+        return new LinkedListIterator($this->node ?? null);
     }
 }

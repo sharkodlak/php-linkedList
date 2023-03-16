@@ -44,11 +44,15 @@ class SortedLinkedListHandlerTest extends TestCase
 
     public static function addProvider(): array
     {
+        $shuffled = $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        \shuffle($shuffled);
         return [
+            'empty list' => [[], []],
             'two values' => [[1, 2], [1, 2]],
             'reverse order' => [[1, 2], [2, 1]],
             'three values' => [[1, 2, 3], [2, 3, 1]],
             'multiple values' => [[1, 2, 3, 4], [3, 2, 4, 1]],
+            'complex values' => [$expected, $shuffled],
         ];
     }
 }
