@@ -25,6 +25,7 @@ class SortedLinkedListHandler implements \IteratorAggregate
             $this->node = $this->factory->getInstance($value);
         } else {
             $previousNode = null;
+            $lastNode = $this->node->last();
 
             foreach ($this->node as $nodeToCompare) {
                 if ($this->comparator->cmp($value, $nodeToCompare->getValue()) < 0) {
@@ -34,6 +35,9 @@ class SortedLinkedListHandler implements \IteratorAggregate
                         $previousNode->append($value);
                     }
 
+                    break;
+                } elseif ($nodeToCompare === $lastNode) {
+                    $nodeToCompare->append($value);
                     break;
                 }
 

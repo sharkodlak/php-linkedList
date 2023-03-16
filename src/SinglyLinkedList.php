@@ -16,11 +16,6 @@ class SinglyLinkedList implements LinkedList
     ) {
     }
 
-    public function newNode(int|string $value): self
-    {
-        return new self($value);
-    }
-
     public function getValue(): int|string
     {
         return $this->value;
@@ -49,7 +44,7 @@ class SinglyLinkedList implements LinkedList
     public function prependNode(LinkedList $node): self
     {
         \assert($node instanceof self);
-        $node->appendNode($this);
+        $node->nextNode = $this;
         return $node;
     }
 
