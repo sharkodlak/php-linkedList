@@ -29,11 +29,12 @@ class SinglyLinkedListTest extends TestCase
         $this->assertSame(2, $phlink->next()->getValue());
     }
 
-    public function testToArray(): void
+    public function testGetIterator(): void
     {
         $phlink = new SinglyLinkedList(1);
         $phlink->append(2);
-        $this->assertSame([1, 2], $phlink->toArray());
+        $iterator = $phlink->getIterator();
+        $this->assertInstanceOf(\Iterator::class, $iterator);
     }
 
     public function testAddInTheMiddle(): void
@@ -43,6 +44,10 @@ class SinglyLinkedListTest extends TestCase
         $two->append(4);
         $two->append(3);
 
-        $this->assertSame([1, 2, 3, 4], $phlink->toArray());
+        $actual = \array_map(
+            fn(SinglyLinkedList $node) => $node->getValue(),
+            \iterator_to_array($phlink->getIterator())
+        );
+        $this->assertSame([1, 2, 3, 4], $actual);
     }
 }

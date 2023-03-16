@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sharkodlak\Phlink;
 
+use Sharkodlak\Phlink\Iterator\LinkedListIterator;
 use Traversable;
 
 class SinglyLinkedList implements LinkedList

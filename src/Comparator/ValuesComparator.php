@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Sharkodlak\Phlink;
+namespace Sharkodlak\Phlink\Comparator;
 
 interface ValuesComparator
 {

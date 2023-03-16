@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Sharkodlak\Phlink;
+namespace Sharkodlak\Phlink\Iterator;
+
+use Sharkodlak\Phlink\LinkedList;
 
 /** @implements \Iterator<int,LinkedList> */
 class LinkedListIterator implements \Iterator
@@ -20,6 +22,7 @@ class LinkedListIterator implements \Iterator
         \assert($this->currentNode !== null);
         $nextNode = $this->currentNode->next();
         $this->currentNode = $nextNode !== $this->startNode ? $nextNode : null;
+        $this->key++;
     }
 
     public function key(): int

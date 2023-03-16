@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Sharkodlak\Phlink;
+namespace Sharkodlak\Phlink\Handler;
 
+use Sharkodlak\Phlink\Comparator\ValuesComparator;
 use Sharkodlak\Phlink\Factory\Factory;
+use Sharkodlak\Phlink\LinkedList;
 
 /** @implements \IteratorAggregate<int,LinkedList> */
 class SortedLinkedListHandler implements \IteratorAggregate
