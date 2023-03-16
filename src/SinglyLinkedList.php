@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Sharkodlak\Phlink;
 
+use Traversable;
+
 class SinglyLinkedList implements LinkedList
 {
     private ?self $nextNode = null;
@@ -37,15 +39,17 @@ class SinglyLinkedList implements LinkedList
         return $node;
     }
 
-    public function last(): self
+    public function prepend(int|string $value): self
     {
-        $lastNode = $this;
+        $node = new self($value);
+        return $this->prependNode($node);
+    }
 
-        while ($lastNode->nextNode !== null && $lastNode->nextNode !== $this) {
-            $lastNode = $lastNode->nextNode;
-        }
-
-        return $lastNode;
+    public function prependNode(LinkedList $node): self
+    {
+        \assert($node instanceof self);
+        $node->appendNode($this);
+        return $node;
     }
 
     public function next(): ?self
@@ -53,17 +57,19 @@ class SinglyLinkedList implements LinkedList
         return $this->nextNode;
     }
 
-    /** @return array<int,int|string> */
-    public function toArray(): array
+    public function last(): self
     {
-        $array = [];
         $lastNode = $this;
 
-        do {
-            $array[] = $lastNode->value;
-            $lastNode = $lastNode->nextNode;
-        } while ($lastNode !== null && $lastNode !== $this);
+        while ($lastNode->next() !== null && $lastNode->next() !== $this) {
+            $lastNode = $lastNode->next();
+        }
 
-        return $array;
+        return $lastNode;
+    }
+
+    public function getIterator(): Traversable
+    {
+        return new LinkedListIterator($this);
     }
 }

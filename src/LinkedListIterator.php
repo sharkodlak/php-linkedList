@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Sharkodlak\Phlink;
 
-/** @implements \Iterator<int,int|string> */
+/** @implements \Iterator<int,LinkedList> */
 class LinkedListIterator implements \Iterator
 {
     private int $key;
@@ -18,7 +18,8 @@ class LinkedListIterator implements \Iterator
     public function next(): void
     {
         \assert($this->currentNode !== null);
-        $this->currentNode = $this->currentNode->next();
+        $nextNode = $this->currentNode->next();
+        $this->currentNode = $nextNode !== $this->startNode ? $nextNode : null;
     }
 
     public function key(): int
@@ -37,9 +38,9 @@ class LinkedListIterator implements \Iterator
         $this->currentNode = $this->startNode;
     }
 
-    public function current(): int|string
+    public function current(): LinkedList
     {
         \assert($this->currentNode !== null);
-        return $this->currentNode->getValue();
+        return $this->currentNode;
     }
 }
